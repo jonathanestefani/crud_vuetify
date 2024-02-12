@@ -1,0 +1,88 @@
+<template>
+  <v-container>
+    <v-card>
+      <v-card-title>{{ mode === 'edit' ? 'Editar Cliente' : 'Cadastrar Novo Cliente' }}</v-card-title>
+      <v-card-text>
+        <v-form ref="form" v-model="valid">
+          <v-container>
+            <v-row>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-text-field 
+                  outlined
+                  v-model="customer.recnum"
+                  label="Recnum"
+                  disabled></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-text-field 
+                  outlined
+                  v-model="customer.empresa"
+                  label="Empresa"
+                  disabled
+                  required></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-text-field 
+                  outlined
+                  v-model="customer.codigo"
+                  label="Código" 
+                  :rules="rules"
+                  required></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-text-field 
+                  outlined
+                  v-model="customer.razao_social"
+                  label="Razão Social"
+                  :rules="rules"
+                  required></v-text-field>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-select
+                  v-model="selectedOption"
+                  :items="enumOptions"
+                  label="Escolha uma opção"
+                  :rules="rules"
+                  outlined
+                  required
+                ></v-select>
+              </v-col>
+              <v-col
+                cols="12"
+                sm="6"
+              >
+                <v-text-field 
+                  outlined
+                  v-model="customer.cpf_cnpj"
+                  label="CPF/CNPJ" 
+                  :rules="rules"
+                  required></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>        
+      </v-card-text>
+      <v-card-actions class="justify-end">
+        <v-btn :loading="loading" color="error" @click="cancel()">Cancelar</v-btn>
+        <v-btn :loading="loading" color="primary" @click="record()">{{ mode === 'edit' ? 'Salvar' : 'Cadastrar' }}</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-container>
+</template>
+
+<script lang="ts" src="./record.ts"></script>
