@@ -18,9 +18,6 @@ Route::group([
     'middleware' => 'api',
     'namespace' => 'App\Http\Controllers'
 ], function ($router) {
-    Route::get('simulate', "SimulateController@simulate");
-
-    Route::get('cars', "CarsController@index");
-    Route::get('cars/{id}', "CarsController@show");
-    Route::get('file/{filename}', "FileController@show");
+    Route::resource('/company', 'CompanyController');
+    Route::resource('/customer', 'CustomerController');
 });

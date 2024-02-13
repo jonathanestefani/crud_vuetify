@@ -3,25 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Countries extends Model
+class Company extends Model
 {
-    use SoftDeletes;
-
-    protected $table = 'countries';
+    protected $table = 'empresa';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'name',
-        'abbrev',
-        'created_at'
-    ];
+    protected $fillable = ['recnum', 'codigo', 'empresa', 'sigla', 'razao_social'];
+    protected $primaryKey = 'codigo';
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * A method to get $fillable for mass updates
@@ -38,7 +33,9 @@ class Countries extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        '',
+    ];
 
     /**
      * The attributes that should be cast to native types.

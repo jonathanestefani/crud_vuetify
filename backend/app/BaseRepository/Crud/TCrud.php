@@ -2,9 +2,6 @@
 
 namespace App\BaseRepository\Crud;
 
-use App\BaseRepository\Exceptions\ErrorBaseRepositoryException;
-use App\BaseRepository\Exceptions\ErrorCrudValidationException;
-
 trait TCrud {
     // ICrudValidation
     private Array $validationList = [];

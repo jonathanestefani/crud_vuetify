@@ -8,22 +8,22 @@
     <v-list-item>
       <v-row justify="center" align-content="center" no-gutters>
         <span class="bgSocialMedia">
-          <router-link to="#" target="_blank">
+          <router-link to="https://www.facebook.com/elocaoficial" target="_blank">
             <v-icon to="#" icon="mdi-facebook"></v-icon>
           </router-link>
         </span>
         <span class="ml-2 bgSocialMedia">
-          <router-link to="#" target="_blank">
+          <router-link to="https://www.instagram.com/elocaoficial" target="_blank">
             <v-icon to="#" icon="mdi-instagram"></v-icon>
           </router-link>
         </span>
         <span class="ml-2 bgSocialMedia">
-          <router-link to="#" target="_blank">
-            <v-icon to="#" icon="mdi-twitter"></v-icon>
+          <router-link to="https://www.youtube.com/c/Elocaparalocadoras" target="_blank">
+            <v-icon to="#" icon="mdi-youtube"></v-icon>
           </router-link>
         </span>
         <span class="ml-2 bgSocialMedia">
-          <router-link to="#" target="_blank">
+          <router-link to="https://www.linkedin.com/company/oficialeloca/mycompany/" target="_blank">
             <v-icon to="#" icon="mdi-linkedin"></v-icon>
           </router-link>
         </span>

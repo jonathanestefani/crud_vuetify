@@ -16,7 +16,7 @@ trait TUpdate {
 
             $this->afterExecute(EOperation::UPDATE);
 
-            return $this->data->refresh();
+            return $this->data;
         } catch (\Throwable $th) {
             throw $th;
         }

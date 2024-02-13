@@ -34,10 +34,10 @@ export default {
 }
 .v-list-item--density-compact {
   min-height: 24px !important;
-  color: white;
+  color: black;
 }
 .v-list-item--density-compact * {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 </style>

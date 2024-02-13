@@ -15,7 +15,8 @@ trait TCreate {
 
             $this->beforeExecute(EOperation::CREATE);
 
-            $this->data = $this->modelClass::create($this->request)->refresh();
+            $this->data = $this->modelClass::create($this->request);
+            // $this->data = $this->data->refresh();
 
             $this->afterExecute(EOperation::CREATE);
 

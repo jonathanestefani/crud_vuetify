@@ -2,36 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Thiagoprz\CompositeKey\HasCompositeKey;
 
-class States extends Model
+class Customer extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasCompositeKey;
 
-    protected $table = 'states';
+    protected $table = 'cliente';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'country_id',
-        'name',
-        'uf',
-        'created_at'
-    ];
-
-    public $tokenAttributes = [
-        'id',
-        'country_id',
-        'name',
-        'uf',
-        'created_at'
-    ];
+    protected $fillable = ['recnum', 'empresa', 'codigo', 'razao_social', 'tipo', 'cpf_cnpj'];
+    protected $primaryKey = ['empresa', 'codigo'];
+    public $incrementing = false;
+    public $timestamps = false;
 
     /**
      * A method to get $fillable for mass updates
@@ -48,7 +36,9 @@ class States extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        '',
+    ];
 
     /**
      * The attributes that should be cast to native types.

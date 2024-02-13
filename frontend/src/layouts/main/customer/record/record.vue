@@ -20,12 +20,18 @@
                 cols="12"
                 sm="6"
               >
-                <v-text-field 
-                  outlined
-                  v-model="customer.empresa"
+                <v-select
+                  v-model="selectedOptionCompany"
+                  :items="companyList"
+                  item-value="codigo"
+                  item-title="razao_social"
                   label="Empresa"
-                  disabled
-                  required></v-text-field>
+                  :rules="rules"
+                  v-bind="{'return-object':true}"
+                  outlined
+                  required
+                >
+                </v-select>
               </v-col>
               <v-col
                 cols="12"
@@ -56,7 +62,7 @@
                 <v-select
                   v-model="selectedOption"
                   :items="enumOptions"
-                  label="Escolha uma opção"
+                  label="Tipo"
                   :rules="rules"
                   outlined
                   required

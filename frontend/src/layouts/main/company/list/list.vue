@@ -12,11 +12,12 @@
 
       </v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers" :items="items" item-key="recnum" :loading="loading" loading-text="Carregando"
-          hide-default-footer>
-          <template v-slot:top>
-            
-          </template>
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          item-key="recnum"
+          :loading="loading"
+          loading-text="Carregando">
           <template v-slot:item.codigo="{ item }">
             {{ item.codigo }}
           </template>
@@ -29,14 +30,27 @@
           <template v-slot:item.razao_social="{ item }">
             {{ item.razao_social }}
           </template>
-          <template v-slot:item.opcao_excluir="{ item }">
+          <template v-slot:item.opcao="{ item }">
             <v-btn
               icon
               flat
-              v-on="on"><v-icon small>mdi-delete</v-icon>
+              v-on="on"
+              @click="edit(item)"><v-icon small>mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn
+              icon
+              flat
+              v-on="on"
+              @click="destroy(item)"><v-icon small>mdi-delete</v-icon>
             </v-btn>
           </template>
+          <template #bottom></template>
         </v-data-table>
+        <pagination
+          :paginationObject="paginationObject"
+          @change="load"
+          :loading="loading"
+        />
       </v-card-text>
     </v-card>
   </v-container>

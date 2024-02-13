@@ -1,4 +1,22 @@
+import CustomerService from '@/app/Services/CustomerService';
+import Pagination from "@/components/pagination/Pagination.vue";
+import PaginationComposable from "@/components/pagination/PaginationComposable.js";
+import Swal from "sweetalert2";
+
 export default {
+  setup() {
+    const { pagination, default_pagination, paginate} = PaginationComposable();
+
+    return {
+      pagination,
+      default_pagination,
+      paginate
+    }
+  },
+
+  components: {
+    Pagination
+  },
   data() {
     return {
       loading: false,
@@ -9,25 +27,69 @@ export default {
         { title: 'Razão Social', value: 'razao_social' },
         { title: 'Tipo', value: 'tipo' },
         { title: 'CPF/CNPJ', value: 'cpf_cnpj' },
-        { title: '', value: 'opcao_excluir' },
+        { title: '#', value: 'opcao', align: 'center' },
       ],
-      items: [
-        { recnum: 1, empresa: 'Empresa 1', codigo: '001', razao_social: 'Empresa 1 LTDA', tipo: 'E1', cpf_cnpj: '0001110101121', opcao_excluir: '' },
-        { recnum: 2, empresa: 'Empresa 2', codigo: '002', razao_social: 'Empresa 2 LTDA', tipo: 'E2', cpf_cnpj: '0001110101121', opcao_excluir: '' },
-        { recnum: 3, empresa: 'Empresa 3', codigo: '003', razao_social: 'Empresa 3 LTDA', tipo: 'E3', cpf_cnpj: '0001110101121', opcao_excluir: '' },
-        // Adicione mais empresas conforme necessário
-      ],
+      items: [],
+      paginationObject: {},
     };
+  },
+  created() {
+    this.paginationObject = this.pagination;
   },
   methods: {
     record() {
       this.$router.push('/customer/record');
     },
-    load() {
+    edit(item) {
+      this.$router.push('/customer/record/' + item.recnum);
+    },
+    destroy(item) {
+      new Swal({
+        icon:"warning",
+        title: "Atenção",
+        text: "Deseja mesmo excluir?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await CustomerService.build().delete(item.recnum);
+            await this.load();
+          } catch (error) {
+            new Swal({
+              icon:"error",
+              title: "Atenção",
+              text: "Houve um problema ao tentar excluir!",
+            })
+            console.error(error);
+          }
+        }
+      });
+    },
+    async load() {
       this.loading = true;
 
+      const query = this.getApiQuery();
+
+      const response = await CustomerService.build().index({ query });
+
+      this.paginate(response);
+
+      this.items = response.data;
 
       this.loading = false;
-    }
+    },
+    getApiQuery() {
+      return {
+        params: {
+          ...this.pagination,
+          filter: { ...this.filter }
+        }
+      };
+    },
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <v-footer
-    color="#565b60"
+    color="#fff"
     padless
     absolute
     inset
@@ -10,37 +10,15 @@
   >
     <v-container>
       <v-row justify="center" no-gutters>
-        <v-col class="d-none d-md-flex text-left text-white" md="2">
-          <List :data="listFindvehicle" />
-        </v-col>
-        <v-col class="d-none d-md-flex text-left text-white" md="2">
-          <List :data="listCompany" />
-        </v-col>
-        <v-col class="d-none d-md-flex text-left text-white" md="2">
-          <List :data="listAttendance" />
-        </v-col>
-        <v-col class="d-none d-md-flex text-left text-white" md="2">
-          <List :data="listShopkeepers" />
-        </v-col>
-        <v-col class="d-none d-md-flex text-center text-white" cols="12" md="2">
-          <ListAttendance />
-        </v-col>
-        <v-col class="d-none d-md-flex text-center text-white" cols="12" md="2">
-          <ListFollowUs />
+        <v-col class="d-none d-block text-center text-black " md="4">
+          <img src="https://d1zmtoblzb5ysp.cloudfront.net/00244e50-a5e4-4d51-9497-5fd3c55982db/images/eloca_logo_pequena.webp" class="img-fluid" alt="Eloca" width="180" height="39">
+          <p>A Eloca é líder absoluta em sistemas, plataformas e soluções para locadoras de diversos portes e segmentos do Brasil.</p>
         </v-col>
 
-        <v-col
-          class="d-flex d-inline-flex justify-center d-md-none text-center text-white"
-          cols="12"
-        >
+        <v-col class="d-flex justify-end text-black" cols="12" md="12">
           <ListFollowUs />
         </v-col>
-        <v-col
-          class="d-flex d-inline-flex justify-center d-md-none text-center text-white"
-          cols="12"
-        >
-          <ListAttendance />
-        </v-col>
+        
       </v-row>
     </v-container>
   </v-footer>
@@ -60,7 +38,6 @@ export default {
   data() {
     return {
       listFindvehicle: [
-        { name: "Encontre seu veículo", url: "#!" },
         { name: "Encontre seu veículo", url: "#!" },
         { name: "Lojas", url: "#!" },
         { name: "Promoções", url: "#!" },

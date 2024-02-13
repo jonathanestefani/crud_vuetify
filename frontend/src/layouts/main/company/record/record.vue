@@ -10,25 +10,41 @@
                 cols="12"
                 sm="6"
               >
-                <v-text-field outlined v-model="company.codigo" label="Código" disabled></v-text-field>
+              <v-text-field
+                outlined
+                v-model="company.codigo"
+                label="Código"
+                disabled></v-text-field>
               </v-col>
               <v-col
                 cols="12"
                 sm="6"
               >
-                <v-text-field outlined v-model="company.empresa" label="Empresa" :rules="rules"></v-text-field>
+              <v-text-field
+                outlined
+                v-model="company.empresa"
+                label="Empresa"
+                :rules="rules"></v-text-field>
               </v-col>
               <v-col
                 cols="12"
                 sm="6"
               >
-                <v-text-field outlined v-model="company.sigla" label="Sigla" :rules="rules"></v-text-field>
+              <v-text-field
+                outlined
+                v-model="company.sigla"
+                label="Sigla"
+                :rules="rules"></v-text-field>
               </v-col>
               <v-col
                 cols="12"
                 sm="6"
               >
-                <v-text-field outlined v-model="company.razao_social" label="Razão Social" :rules="rules"></v-text-field>
+              <v-text-field
+                outlined
+                v-model="company.razao_social"
+                label="Razão Social"
+                :rules="rules"></v-text-field>
               </v-col>
             </v-row>
           </v-container>

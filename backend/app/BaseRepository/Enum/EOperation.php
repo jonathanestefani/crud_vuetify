@@ -7,4 +7,5 @@ final class EOperation
     public const CREATE = "create";
     public const UPDATE = "update";
     public const LOAD = "load";
+    public const DESTROY = "destroy";
 }

@@ -5,7 +5,6 @@ namespace App\BaseRepository;
 use App\BaseRepository\Enum\EOperation;
 use App\Exceptions\ErrorServiceException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 trait THttpRequest
 {
@@ -14,15 +13,21 @@ trait THttpRequest
 
     public function setRequest(Request $request)
     {
+        return $this->processRequest($request);
+    }
+    
+    protected function processRequest(Request &$request) {
         $this->request = $request->all();
 
         $this->loadHttpFilters();
         $this->loadHttpAggregate();
 
-        if (isset($this->request["id"]) && $this->request["id"] != '0') {
-            $this->openModelInstance($this->request["id"]);
+        if (!is_array(app($this->modelClass)->getKeyName())) {
+            if (isset($this->request[app($this->modelClass)->getKeyName()]) && $this->request[app($this->modelClass)->getKeyName()] != '0') 
+                $this->openModelInstance($this->request[app($this->modelClass)->getKeyName()]);
         } else {
-            unset($this->request['id']);
+            if (!is_array(app($this->modelClass)->getKeyName()))
+                unset($this->request[app($this->modelClass)->getKeyName()]);
 
             $this->operation = EOperation::CREATE;
         }
@@ -37,10 +42,10 @@ trait THttpRequest
         $this->loadHttpFilters();
         $this->loadHttpAggregate();
 
-        if (isset($this->request["id"]) && $this->request["id"] != '0') {
-            $this->openModelInstance($this->request["id"]);
+        if (isset($this->request[app($this->modelClass)->getKeyName()]) && $this->request[app($this->modelClass)->getKeyName()] != '0') {
+            $this->openModelInstance($this->request[app($this->modelClass)->getKeyName()]);
         } else {
-            unset($this->request['id']);
+            unset($this->request[app($this->modelClass)->getKeyName()]);
 
             $this->operation = EOperation::CREATE;
         }
@@ -64,6 +69,12 @@ trait THttpRequest
         }
     }
 
+    public function setId($id) {
+        $this->openModelInstance($id);
+
+        return $this;
+    }
+
     protected function openModelInstance($id)
     {
         /*
@@ -80,5 +91,7 @@ trait THttpRequest
     
             $this->operation = EOperation::UPDATE;
         }
+
+        return $this;
     }
 }
