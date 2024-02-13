@@ -6,7 +6,15 @@ const routes = [
     path: "/",
     component: () => import("@/layouts/Init.vue"),
     children: [
-
+      {
+        path: "/",
+        name: "Home",
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+          import( "@/layouts/main/company/list/list.vue"),
+      },
       {
         path: "/company/list",
         name: "CompanyList",
@@ -15,7 +23,7 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
           import( "@/layouts/main/company/list/list.vue"),
-        },
+      },
       {
         path: "/company/record",
         name: "CompanyRecord",
