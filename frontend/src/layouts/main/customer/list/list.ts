@@ -57,7 +57,7 @@ export default {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-            await CustomerService.build().delete(item.recnum);
+            await CustomerService.build().delete(item.empresa + "/" + item.codigo);
             await this.load();
           } catch (error) {
             new Swal({

@@ -8,7 +8,7 @@ trait TIndex
 {
     protected $perPageAttribute;
     protected $perPageDefault;
-    protected $limit = 25;
+    protected $limit = 10;
 
     public function Index()
     {

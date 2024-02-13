@@ -14,7 +14,8 @@
                 outlined
                 v-model="company.codigo"
                 label="Código"
-                disabled></v-text-field>
+                :rules="rules"
+                :disabled="company.recnum"></v-text-field>
               </v-col>
               <v-col
                 cols="12"

@@ -16,7 +16,7 @@ class StoreService extends ServicesStoreService
 
         try {
             if (isset($this->request["recnum"])) {
-                $this->openModel($this->request["recnum"]);
+                $this->openModel($this->request["empresa"], $this->request["codigo"]);
             } else {
                 unset($this->request["recnum"]);
                 $this->operation = EOperation::CREATE;        
@@ -48,10 +48,10 @@ class StoreService extends ServicesStoreService
         throw new ErrorServiceException("Não foi possível definir o tipo de operação!");
     }
 
-    public function openModel($recnum)
+    public function openModel($empresa, $codigo)
     {        
         try {
-            $this->data = $this->instance->where('recnum', $recnum)->get()->first();
+            $this->data = $this->instance->where('empresa', $empresa)->where('codigo', $codigo)->get()->first();
 
             $this->operation = EOperation::UPDATE;
         } catch (\Throwable $th) {

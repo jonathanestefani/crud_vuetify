@@ -54,11 +54,20 @@ export default {
           this.resetForm();
           this.$router.push('/company/list');
         } catch (error) {
-          new Swal({
-            icon:"error",
-            title: "Atenção",
-            text: "Houve um problema ao tentar cadastrar",
-          })
+          if (error.response.status == 422) {
+            const data = JSON.parse(error.response.data);
+            console.log(data);
+            new Swal({
+              icon:"error",
+              title: "Atenção",
+              text: data.message,
+            })  
+          } else
+            new Swal({
+              icon:"error",
+              title: "Atenção",
+              text: "Houve um problema ao tentar cadastrar",
+            })
 
           console.error(error);
         } finally {

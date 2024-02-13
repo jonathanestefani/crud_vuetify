@@ -27,6 +27,7 @@
                   item-title="razao_social"
                   label="Empresa"
                   :rules="rules"
+                  :disabled="customer.recnum"
                   v-bind="{'return-object':true}"
                   outlined
                   required
@@ -42,6 +43,7 @@
                   v-model="customer.codigo"
                   label="Código" 
                   :rules="rules"
+                  :disabled="customer.recnum"
                   required></v-text-field>
               </v-col>
               <v-col

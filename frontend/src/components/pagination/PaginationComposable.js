@@ -6,13 +6,13 @@ export default function PaginationComposable() {
     page: 1,
     pageStart: 0,
     pageStop: 0,
-    itemsPerPage: 5,
+    itemsPerPage: 15,
     pageCount: 0,
     itemsLength: 0
   });
 
   const default_pagination = reactive({
-    itemsPerPage: 5
+    itemsPerPage: 15
   });
 
   function paginate(response) {

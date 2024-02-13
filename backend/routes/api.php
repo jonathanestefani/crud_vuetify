@@ -20,4 +20,5 @@ Route::group([
 ], function ($router) {
     Route::resource('/company', 'CompanyController');
     Route::resource('/customer', 'CustomerController');
+    Route::delete('/customer/{empresa}/{codigo}', 'CustomerController@destroy');
 });

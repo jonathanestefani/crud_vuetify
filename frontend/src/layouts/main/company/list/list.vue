@@ -18,6 +18,9 @@
           item-key="recnum"
           :loading="loading"
           loading-text="Carregando">
+          <template v-slot:item.recnum="{ item }">
+            {{ item.recnum }}
+          </template>
           <template v-slot:item.codigo="{ item }">
             {{ item.codigo }}
           </template>

@@ -89,10 +89,15 @@ class CustomerController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($empresa, $codigo)
     {
         try {
-            $data = (new DestroyService(Customer::class))->setId($id)->execute();
+            $request = New Request([
+                "empresa" => $empresa,
+                "codigo" => $codigo
+            ]);
+
+            $data = (new DestroyService(Customer::class))->setRequest($request)->execute();
             return new Response($data);
         } catch (ErrorServiceException $th) {
             return new Response(["message" => $th->getMessage()], 400);
