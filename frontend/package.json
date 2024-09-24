@@ -22,7 +22,7 @@
     "vue-numeral-filter": "^2.2.0",
     "vue-router": "^4.0.0",
     "vue-sweetalert2": "^5.0.5",
-    "vuetify": "^3.4.0-beta.1",
+    "vuetify": "^3.7.1",
     "vuex": "^4.0.2",
     "webfontloader": "^1.0.0"
   },
